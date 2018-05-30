@@ -1,0 +1,15 @@
+[user]
+	name =
+	email =
+
+[color]
+    ui = true
+
+[core]
+    excludesfile = ~/.gitignore
+    pager =
+               
+[alias]
+    co = checkout
+    glog = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
+
