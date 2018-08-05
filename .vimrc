@@ -5,6 +5,7 @@ set title
 set smartindent
 set nrformats-=octal
 set backspace=indent,eol,start
+set encoding=utf-8
 
 set rtp+=$GOROOT/misc/vim
 exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
