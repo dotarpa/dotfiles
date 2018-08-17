@@ -11,8 +11,6 @@ set wrap
 
 highlight Search cterm=bold,reverse guibg=bold,reverse
 
-"syntax on
-
 "set rtp+=$GOROOT/misc/vim
 "exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
 "set completeopt=menu,preview
@@ -49,3 +47,7 @@ endif
 if dein#check_install()
         call dein#install()
 endif
+
+syntax enable
+colorscheme xoria256
+
