@@ -1,3 +1,9 @@
+set encoding=utf-8
+scriptencoding utf-8
+set fileencoding=utf-8
+set ambiwidth=double
+
+set cursorline
 set tabstop=4
 set noexpandtab
 set shiftwidth=4
@@ -7,6 +13,7 @@ set nrformats-=octal
 set backspace=indent,eol,start
 set number
 set wrap
+set clipboard+=unnamedplus
 "set background=dark
 
 highlight Search cterm=bold,reverse guibg=bold,reverse
@@ -50,4 +57,4 @@ endif
 
 syntax enable
 colorscheme xoria256
-
+set completeopt=menu,preview

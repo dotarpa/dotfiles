@@ -4,3 +4,9 @@ repo = 'Shougo/dein.vim'
 [[plugins]]
 repo = 'flazz/vim-colorschemes'
 
+[[plugins]]
+repo = 'Townk/vim-autoclose'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+
