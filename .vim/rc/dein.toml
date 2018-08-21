@@ -10,3 +10,6 @@ repo = 'Townk/vim-autoclose'
 [[plugins]]
 repo = 'majutsushi/tagbar'
 
+[[plugins]]
+repo = 'vim-scripts/taglist.vim'
+
