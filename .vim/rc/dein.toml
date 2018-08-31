@@ -10,3 +10,5 @@ repo = 'Townk/vim-autoclose'
 [[plugins]]
 repo = 'majutsushi/tagbar'
 
+[[plugins]]
+repo = 'tpope/vim-fugitive'
