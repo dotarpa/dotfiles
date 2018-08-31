@@ -5,7 +5,7 @@
 ```
 $ cd ~; pwd
 $ git clone git@github.com:Bentham3314/dotfiles.git
-$ ln -s ~/dotfiles/.vimrc ~/
+$ ln -s ~/dotfiles/.vim/ ~/
 $ ln -s ~/dotfiles/.config ~/
 ```
 
@@ -29,3 +29,22 @@ $ ln -s ~/dotfiles/.config ~/
 # make install
 ```
 
+#### Note. install Python3
+
+- Env: CnetOS6
+
+```
+# yum install -y https://centos6.iuscommunity.org/ius-release.rpm
+# yum install -y python36*
+# pip3.6 install --upgrade pip
+# pip3.6 install neovim
+```
+
+- Env: CentOS7
+
+```
+# yum install -y https://centos7.iuscommunity.org/ius-release.rpm
+# yum install -y python36*
+# pip3.6 install --upgrade pip
+# pip3.6 install neovim
+```
