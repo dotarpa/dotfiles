@@ -56,4 +56,7 @@ $ go get -u golang.org/x/tools/cmd/gopls
 ```
 
 
+#### Note. add/fix plugins
+
+- 20190308 add [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
 
