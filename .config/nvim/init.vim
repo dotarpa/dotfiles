@@ -55,17 +55,7 @@ if dein#check_install()
         call dein#install()
 endif
 
-if executable('golsp')
-	augroup LspGo
-		au!
-		autocmd User lsp_setup call lsp#register_server({
-			\ 'name': 'go-lang',
-			\ 'cmd': {server_info->['golsp', '-mode', 'stdio']},
-			\ 'whitelist': ['go'],
-			\ })
-		autocmd FileType go setlocal omnifunc=lsp#complate
-	augroup END
-endif
+let g:python3_host_prog = expand('/usr/bin/python3.6')
 
 syntax enable
 colorscheme xoria256

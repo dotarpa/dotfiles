@@ -1,36 +1,11 @@
 [[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
-hook_add = '''
-	let g:go_fmt_command = "goimports"
-	let g:go_def_mapping_enabled = 0
-	let g:go_doc_keywordprg_enabled = 0
-'''
-
-[[plugins]]
 repo = 'rcmdnk/vim-markdown'
 on_ft = ['md', 'markdown']
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = 'let g:deoplete#enable_at_startup = 1'
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = 'let g:lsp_async_completion = 1'
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
-on_ft = 'go'
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
-#[[plugins]]
-#repo = 'prabirshrestha/async.vim'
-
-#[[plugins]]
-#repo = 'prabirshrestha/vim-lsp'
-
-#[[plugins]]
-#repo = 'prabirshrestha/asyncomplete.vim'
-#hook_add = 'let g:lsp_async_completion = 1'
-
-#[[plugins]]
-#repo = 'prabirshrestha/asyncomplete-lsp.vim'
-
-#[[pkugins]]
-#repo = 'natebosch/vim-lsc'
