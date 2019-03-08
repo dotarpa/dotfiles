@@ -37,7 +37,7 @@ $ ln -s ~/dotfiles/.config ~/
 # yum install -y https://centos6.iuscommunity.org/ius-release.rpm
 # yum install -y python36*
 # pip3.6 install --upgrade pip
-# pip3.6 install neovim
+# pip3.6 install pynvim
 ```
 
 - Env: CentOS7
@@ -46,5 +46,5 @@ $ ln -s ~/dotfiles/.config ~/
 # yum install -y https://centos7.iuscommunity.org/ius-release.rpm
 # yum install -y python36*
 # pip3.6 install --upgrade pip
-# pip3.6 install neovim
+# pip3.6 install pynvim
 ```
