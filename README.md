@@ -48,3 +48,12 @@ $ ln -s ~/dotfiles/.config ~/
 # pip3.6 install --upgrade pip
 # pip3.6 install pynvim
 ```
+
+#### Note. golang lsp server
+
+```
+$ go get -u golang.org/x/tools/cmd/gopls
+```
+
+
+
