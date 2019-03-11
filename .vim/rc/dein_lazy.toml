@@ -16,3 +16,8 @@ hook_add = '''
 	let g:go_def_mapping_enabled = 0
 	let g:go_dec_keywordprg_enabled = 0
 '''
+
+[[plugins]]
+repo = 'momota/junos.vim'
+on_ft = ['junos']
+

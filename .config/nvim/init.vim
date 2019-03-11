@@ -18,14 +18,9 @@ set clipboard+=unnamedplus
 
 highlight Search cterm=bold,reverse guibg=bold,reverse
 
-"set rtp+=$GOROOT/misc/vim
-"exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
-"set completeopt=menu,preview
-
 let s:dein_dir = expand('~/.cache/dein')
 let s:dein_repo_dir = s:dein_dir . '/repos/github.com/Shougo/dein.vim'
 
-let g:go_highlight_types = 1
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 
@@ -64,7 +59,6 @@ set completeopt=menu,preview
 let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1 
-map <silent> <leader>l :TlistToggle<CR>
 nnoremap <silent> <Esc><Esc> :noh<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
