@@ -55,6 +55,8 @@ if dein#check_install()
         call dein#install()
 endif
 
+let g:python3_host_prog = expand('/usr/bin/python3.6')
+
 syntax enable
 colorscheme xoria256
 set completeopt=menu,preview
@@ -63,3 +65,7 @@ let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
 let Tlist_Exit_OnlyWindow = 1 
 map <silent> <leader>l :TlistToggle<CR>
+nnoremap <silent> <Esc><Esc> :noh<CR>
+nnoremap <silent> <C-j> :bprev<CR>
+nnoremap <silent> <C-k> :bnext<CR>
+

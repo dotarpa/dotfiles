@@ -1,19 +1,15 @@
 [[plugins]]
-repo = 'fatih/vim-go'
-on_ft = ['go']
-
-[[plugins]]
 repo = 'rcmdnk/vim-markdown'
 on_ft = ['md', 'markdown']
 
 [[plugins]]
-repo = 'Shougo/deoplete.nvim'
-hook_add = 'let g:deoplete#enable_at_startup = 1'
+repo = 'prabirshrestha/asyncomplete.vim'
+hook_add = 'let g:lsp_async_completion = 1'
 
 [[plugins]]
-repo = 'zchee/deoplete-go'
-on_ft = 'go'
+repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
 [[plugins]]
 repo = 'momota/junos.vim'
 on_ft = ['junos']
+
