@@ -13,3 +13,7 @@ hook_add = 'let g:deoplete#enable_at_startup = 1'
 [[plugins]]
 repo = 'zchee/deoplete-go'
 on_ft = 'go'
+
+[[plugins]]
+repo = 'momota/junos.vim'
+on_ft = ['junos']
