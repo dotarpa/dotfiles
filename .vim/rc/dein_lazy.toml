@@ -9,3 +9,10 @@ hook_add = 'let g:lsp_async_completion = 1'
 [[plugins]]
 repo = 'prabirshrestha/asyncomplete-lsp.vim'
 
+[[plugins]]
+repo = 'fatih/vim-go'
+on_ft = ['go']
+hook_add = '''
+	let g:go_def_mapping_enabled = 0
+	let g:go_dec_keywordprg_enabled = 0
+'''
