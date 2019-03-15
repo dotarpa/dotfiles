@@ -8,6 +8,9 @@ repo = 'flazz/vim-colorschemes'
 repo = 'Townk/vim-autoclose'
 
 [[plugins]]
+repo = 'cocopon/iceberg.vim'
+
+[[plugins]]
 repo = 'majutsushi/tagbar'
 
 [[plugins]]

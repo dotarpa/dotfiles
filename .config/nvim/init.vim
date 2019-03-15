@@ -53,7 +53,8 @@ endif
 let g:python3_host_prog = expand('/usr/bin/python3.6')
 
 syntax enable
-colorscheme xoria256
+" colorscheme xoria256
+colorscheme iceberg
 set completeopt=menu,preview
 
 let Tlist_Show_One_File = 1
