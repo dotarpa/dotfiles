@@ -56,6 +56,8 @@ syntax enable
 " colorscheme xoria256
 colorscheme iceberg
 set completeopt=menu,preview
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
 
 let Tlist_Show_One_File = 1
 let Tlist_Use_Right_Window = 1
