@@ -4,9 +4,9 @@ set fileencoding=utf-8
 set ambiwidth=double
 
 set cursorline
-set tabstop=4
+set tabstop=2
 set noexpandtab
-set shiftwidth=4
+set shiftwidth=2
 set title
 set smartindent
 set nrformats-=octal
@@ -66,3 +66,5 @@ nnoremap <silent> <Esc><Esc> :noh<CR>
 nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 
+augroup Filetypes
+	autocmd FileType go setlocal tabstop=4 shiftwidth=4
