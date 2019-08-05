@@ -49,14 +49,14 @@ $ ln -s ~/dotfiles/.config ~/
 # pip3.6 install pynvim
 ```
 
-#### Note. golang lsp server
+#### Note. lsp server
 
 ```
 $ go get -u golang.org/x/tools/cmd/gopls
+# pip3 install python-language-server
 ```
-
 
 #### Note. add/fix plugins
 
 - 20190308 add [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
-
+- 20190805 add pyls
