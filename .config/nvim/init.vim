@@ -12,6 +12,7 @@ set smartindent
 set nrformats-=octal
 set backspace=indent,eol,start
 set number
+set relativenumber
 set wrap
 set clipboard+=unnamedplus
 "set background=dark
