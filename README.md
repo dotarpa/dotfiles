@@ -43,8 +43,7 @@ $ ln -s ~/dotfiles/.config ~/
 - Env: CentOS7
 
 ```
-# yum install -y https://centos7.iuscommunity.org/ius-release.rpm
-# yum install -y python36*
+# yum install -y python3
 # pip3.6 install --upgrade pip
 # pip3.6 install pynvim
 ```
