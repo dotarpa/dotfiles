@@ -5,7 +5,7 @@ set ambiwidth=double
 
 set cursorline
 set tabstop=2
-set noexpandtab
+set expandtab
 set shiftwidth=2
 set title
 set smartindent
@@ -68,4 +68,4 @@ nnoremap <silent> <C-j> :bprev<CR>
 nnoremap <silent> <C-k> :bnext<CR>
 
 augroup Filetypes
-	autocmd FileType go setlocal tabstop=4 shiftwidth=4
+	autocmd FileType go setlocal expandtab tabstop=4 shiftwidth=4
