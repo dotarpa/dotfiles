@@ -1,8 +1,4 @@
 [[plugins]]
-repo = 'rcmdnk/vim-markdown'
-on_ft = ['md', 'markdown']
-
-[[plugins]]
 repo = 'prabirshrestha/asyncomplete.vim'
 hook_add = 'let g:lsp_async_completion = 1'
 
