@@ -5,7 +5,7 @@ set ambiwidth=double
 
 set cursorline
 set tabstop=2
-set noexpandtab
+set expandtab
 set shiftwidth=2
 set title
 set smartindent
@@ -51,7 +51,7 @@ if dein#check_install()
         call dein#install()
 endif
 
-let g:python3_host_prog = expand('/usr/bin/python3.6')
+let g:python3_host_prog = expand('/usr/local/bin/python3')
 
 syntax enable
 " colorscheme xoria256
