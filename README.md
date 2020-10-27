@@ -20,6 +20,11 @@ $ ln -s ~/dotfiles/.config ~/
 - [prerequisites](https://github.com/neovim/neovim/wiki/Building-Neovim#build-prerequisites)  
 
 ```
+// CentOS8
+# sed -i -e s/enabled=0/enabled=1/g /etc/yum.repos.d/CentOS-PowerTools.repo
+# dnf install ninja-build libtool autoconf automake cmake gcc gcc-c++ make pkgconfig unzip patch
+
+
 # cd /usr/local/src/ ; pwd
 # git clone https://github.com/neovim/neovim
 # cd neovim
@@ -48,6 +53,14 @@ $ ln -s ~/dotfiles/.config ~/
 # pip3.6 install pynvim
 ```
 
+- Env: CentOS8
+
+```
+# dnf install -y python3
+# pip3 install --upgrade pip
+# pip3 install pynvim
+```
+
 #### Note. lsp server
 
 ```
@@ -57,5 +70,6 @@ $ go get -u golang.org/x/tools/cmd/gopls
 
 #### Note. add/fix plugins
 
-- 20190308 add [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)
-- 20190805 add pyls
+- 20190308 add [LanguageClient-neovim](https://github.com/autozimu/LanguageClient-neovim)  
+- 20190805 add pyls  
+- 20201027 add CentOS8 Setup  
