@@ -4,7 +4,8 @@
 
 ```
 $ cd ~; pwd
-$ git clone git@github.com:Bentham3314/dotfiles.git
+// $ git clone git@github.com:dotarpa/dotfiles.git
+$ git clone https://github.com/dotarpa/dotfiles.git
 $ ln -s ~/dotfiles/.vim/ ~/
 $ ln -s ~/dotfiles/.config ~/
 ```
@@ -13,7 +14,6 @@ $ ln -s ~/dotfiles/.config ~/
 
 - vim -> nvim
 - dein
-
 
 #### Note. install nvim
 
