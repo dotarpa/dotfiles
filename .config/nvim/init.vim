@@ -69,3 +69,7 @@ nnoremap <silent> <C-k> :bnext<CR>
 
 augroup Filetypes
 	autocmd FileType go setlocal tabstop=4 shiftwidth=4
+
+if exists('g:vscode')
+  set ambiwidth=single
+endif
