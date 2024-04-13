@@ -51,7 +51,7 @@ if dein#check_install()
         call dein#install()
 endif
 
-let g:python3_host_prog = expand('/usr/local/bin/python3')
+let g:python3_host_prog = expand('$HOME/.venv/bin/python3')
 
 syntax enable
 " colorscheme xoria256
@@ -73,3 +73,4 @@ augroup Filetypes
 if exists('g:vscode')
   set ambiwidth=single
 endif
+

@@ -21,3 +21,10 @@ hook_add = '''
 repo = 'momota/junos.vim'
 on_ft = ['junos']
 
+[[plugins]]
+repo = 'rust-lang/rust.vim'
+on_ft = ['rust']
+hook_add = '''
+  let g:rustfmt_autosave = 1
+'''
+
