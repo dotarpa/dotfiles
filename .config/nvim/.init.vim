@@ -15,6 +15,7 @@ set number
 set relativenumber
 set wrap
 set clipboard+=unnamedplus
+set termguicolors
 "set background=dark
 
 highlight Search cterm=bold,reverse guibg=bold,reverse
