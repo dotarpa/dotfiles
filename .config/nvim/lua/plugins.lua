@@ -14,6 +14,5 @@ return {
     'hrsh7th/cmp-buffer',
     'hrsh7th/nvim-cmp',
     'onsails/lspkind.nvim',
-    'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {},
 }
 

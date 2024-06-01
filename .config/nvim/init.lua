@@ -33,4 +33,3 @@ vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap=true, silent=true 
 
 require("lazy_nvim")
 require("lsp")
-require("ibl").setup()
