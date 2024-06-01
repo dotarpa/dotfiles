@@ -29,8 +29,12 @@ cmp.setup({
 })
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = false
 
--- lspconfig.pyright.setup { capabilities = capabilities }
+lspconfig.pyright.setup { 
+    capabilities = capabilities,
+    filetypes = {'py'},
+}
 lspconfig.gopls.setup {
 	capabilities = capabilities,
 	filetypes = {'go'},
@@ -41,6 +45,9 @@ lspconfig.rust_analyzer.setup {
 		['rust-analyzer'] = {},
 	},
 	filetypes = {'rs'},
+}
+lspconfig.tsserver.setup {
+    capabilities = capabilities,
 }
 
 vim.api.nvim_create_autocmd('LspAttach',{
@@ -54,6 +61,32 @@ vim.api.nvim_create_autocmd('LspAttach',{
 		vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-		vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+        vim.keymap.set('n', 'ge', vim.diagnostic.open_float, opts)
+		-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     end,
 })
+
+-- カスタム関数を作成
+
+local function copy_diagnostics_to_clipboard()
+    -- カーソル位置の診断メッセージを取得
+    local diagnostics = vim.diagnostic.get()
+    local line_diagnostics = {}
+
+    -- 診断メッセージをフォーマット
+    for _, diagnostic in ipairs(diagnostics) do
+        table.insert(line_diagnostics, diagnostic.message)
+    end
+
+    -- テーブルを文字列に結合
+    local diagnostics_text = table.concat(line_diagnostics, '\n')
+
+    -- クリップボードにコピー
+    vim.fn.setreg('+', diagnostics_text)
+
+    -- print("Diagnostics copied to clipboard!")
+end
+
+-- キーマップに設定
+vim.keymap.set('n', '<leader>y', copy_diagnostics_to_clipboard, { noremap = true, silent = true })
+
