@@ -33,3 +33,13 @@ vim.api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', { noremap=true, silent=true 
 
 require("lazy_nvim")
 require("lsp")
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = {"html", "tsx", "jsx"},
+    callback = function()
+        vim.bo.tabstop = 2
+        vim.bo.softtabstop = 2
+        vim.bo.shiftwidth = 2
+    end,
+})
+

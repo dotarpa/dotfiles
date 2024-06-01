@@ -48,6 +48,7 @@ lspconfig.rust_analyzer.setup {
 }
 lspconfig.tsserver.setup {
     capabilities = capabilities,
+    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
 }
 
 vim.api.nvim_create_autocmd('LspAttach',{
@@ -62,6 +63,7 @@ vim.api.nvim_create_autocmd('LspAttach',{
 		vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
 		vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
         vim.keymap.set('n', 'ge', vim.diagnostic.open_float, opts)
+        vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, opts)
 		-- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
     end,
 })
@@ -89,4 +91,5 @@ end
 
 -- キーマップに設定
 vim.keymap.set('n', '<leader>y', copy_diagnostics_to_clipboard, { noremap = true, silent = true })
+
 
