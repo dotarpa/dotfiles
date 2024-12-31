@@ -81,6 +81,7 @@ return {
             vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
         end
     },
+    'github/copilot.vim',
 --    {
 --        "shellRaining/hlchunk.nvim",
 --        event = { "BufReadPre", "BufNewFile" },
