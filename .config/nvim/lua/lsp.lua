@@ -2,19 +2,43 @@ local cmp = require('cmp')
 local lspkind = require('lspkind')
 local lspconfig = require('lspconfig')
 
+-- https://github.com/zbirenbaum/copilot-cmp?tab=readme-ov-file#tab-completion-configuration-highly-recommended
+local has_words_before = function()
+  if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+  local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+  if col == 0 then
+    return false
+  end
+  local text = vim.api.nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]
+  return text:match("^%s*$") == nil
+end
+
 cmp.setup({
 	window = {
 		completion = cmp.config.window.bordered({ border = 'single' }),
 		documentation = cmp.config.window.bordered({ border = 'single' }),
 	},
 	mapping = cmp.mapping.preset.insert({
-		['<Tab>'] = cmp.mapping.select_next_item(),
-		['<S-Tab>'] = cmp.mapping.select_prev_item(),
+		['<Tab>'] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+			else
+				fallback()
+			end
+		end),
+		['<S-Tab>'] = vim.schedule_wrap(function(fallback)
+			if cmp.visible() and has_words_before() then
+				cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+			else 
+				fallback()
+			end
+		end),
 		['<C-Space>'] = cmp.mapping.complete(),
 		['<C-e>'] = cmp.mapping.abort(),
 		['<CR>'] = cmp.mapping.confirm({ select = true }),
 	}),
 	sources = cmp.config.sources({
+		{ name = 'copilot' },
 		{ name = 'nvim_lsp' },
 	}, {
 		{ name = 'buffer', keyword_length = 2 },
@@ -24,6 +48,8 @@ cmp.setup({
 			mode = 'symbol',
 			maxwidth = 50,
 			ellipsis_char = '...',
+			symbol_map = { copilot = '' },
+            -- symbol_map = { copilot = '★' },
 		})
 	}
 })
@@ -46,10 +72,14 @@ lspconfig.rust_analyzer.setup {
 	},
 	filetypes = {'rs'},
 }
-lspconfig.tsserver.setup {
-    capabilities = capabilities,
-    filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-}
+
+local ts_opts = {}
+ts_opts.on_attach = function(client)
+	if not is_node_dir() then
+		client.stop(true)
+	end
+end
+lspconfig.ts_ls.setup(ts_opts)
 
 vim.api.nvim_create_autocmd('LspAttach',{
 	group = vim.api.nvim_create_augroup('UserLspConfig', {}),
@@ -91,5 +121,3 @@ end
 
 -- キーマップに設定
 vim.keymap.set('n', '<leader>y', copy_diagnostics_to_clipboard, { noremap = true, silent = true })
-
-

@@ -43,3 +43,6 @@ vim.api.nvim_create_autocmd("FileType", {
     end,
 })
 
+vim.g.have_nerd_font = true
+
+require("copilotchat")

@@ -81,29 +81,59 @@ return {
             vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
         end
     },
-    'github/copilot.vim',
---    {
---        "shellRaining/hlchunk.nvim",
---        event = { "BufReadPre", "BufNewFile" },
---        config = function()
---            require("hlchunk").setup({
---                chunk = {
---                    enable = true,
---                    use_treesitter = true,
---                    priority = 15,
---                    chars = {
---                        horizontal_line = "-",
---                        vertical_line = "|",
---                        -- left_top = "╭",
---                        left_top = "┌",
---                        -- left_bottom = "╰",
---                        left_bottom = "└",
---                        right_arrow = ">",
---                        -- right_arrow = "-",
---                    },
---                },
---            })
---        end
---    },
+    {
+        'nvim-telescope/telescope-ui-select.nvim',
+        config = function()
+            require("telescope").setup {
+                extensions = {
+                    ["ui-select"] = {
+                        require("telescope.themes").get_dropdown {
+                        }
+                    }
+                }
+            }
+            require("telescope").load_extension("ui-select")
+        end,
+    },
+    {
+        'CopilotC-Nvim/CopilotChat.nvim',
+        dependencies = {
+            -- { "github/copilot.vim" },
+            { "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+        },
+        build = "make tiktoken",
+        opts = {
+            -- See Configuration section for options
+        },
+        -- See Commands section for default commands if you want to lazy load on them
+    },
+    {
+        'zbirenbaum/copilot.lua',
+	event = "InsertEnter",
+        config = function()
+        	require("copilot").setup({
+                	suggestion = {enabled = false},
+                    	panel = {enabled = false},
+                })
+        end,
+    },
+    {
+        "zbirenbaum/copilot-cmp",
+	after = { "copilot.lua" },
+        config = function ()
+            require("copilot_cmp").setup()
+        end,
+    },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    },
 }
 
