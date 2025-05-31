@@ -15,73 +15,6 @@ return {
     'hrsh7th/nvim-cmp',
     'onsails/lspkind.nvim',
     {
-        'nvimtools/none-ls.nvim',
-        dependencies = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            local null_ls = require("null-ls")
-            local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
-
-            null_ls.setup({
-                sources = {
-                    null_ls.builtins.formatting.prettierd.with({
-                        prefer_local = "node_modules/.bin",
-                        disabled_filetypes = { "markdown" },
-                    }),
-                    null_ls.builtins.formatting.prettierd,
-                },
-                on_attach = function(client, bufnr)
-                    if client.supports_method("textDocument/formatting") then
-                        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
-                        vim.api.nvim_create_autocmd("BufWritePre", {
-                            group = augroup,
-                            buffer = bufnr,
-                            callback = function()
-                                vim.lsp.buf.format({ 
-                                    sync = false,
-                                    filter = function(c)
-                                        return c.name == "null-ls"
-                                    end,
-                                })
-                            end,
-                        })
-                    end
-                end,
-            })
-        end
-    },
-    {
-        'nvim-telescope/telescope.nvim', branch = '0.1.x',
-        dependencies = { 
-            'nvim-lua/plenary.nvim',
-            {
-                'nvim-telescope/telescope-fzf-native.nvim',
-                build = 'make',
-                cond = function()
-                    return vim.fn.executable 'make' == 1
-                end,
-            },
-        },
-        config = function()
-            local actions = require("telescope.actions")
-            local builtin = require("telescope.builtin")
-
-            require("telescope").setup {
-                defaults = {
-                    mappings = {
-                        i = { ["<ecs>"] = actions.close },
-                        n = { ["q"] = actions.close },
-                    },
-                    layout_strategy = 'vertical'
-                }
-            }
-            vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-            vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-            vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-            vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-            vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
-        end
-    },
-    {
         'nvim-telescope/telescope-ui-select.nvim',
         config = function()
             require("telescope").setup {
@@ -134,6 +67,23 @@ return {
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
         -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
         lazy = false,
+    },
+    {
+	    "nvim-neo-tree/neo-tree.nvim",
+	    branch = "v3.x",
+	    dependencies = {
+		    "nvim-lua/plenary.nvim",
+		    "nvim-tree/nvim-web-devicons",
+		    "MunifTanjim/nui.nvim",
+	    },
+	    lazy = false, -- neo-tree will lazily load itself
+	    ---@module "neo-tree"
+	    ---@type neotree.Config?
+	    opts = {
+		    -- fill any relevant options here
+	    },
+	    -- vim.keymap.set('n', '<leader>n', ':Neotree filesystem reveal left<CR>')
+	    vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
     },
 }
 
