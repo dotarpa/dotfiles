@@ -29,4 +29,4 @@ return {
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
             vim.keymap.set('n', '<leader>fd', builtin.diagnostics, {})
         end
-    }
+}

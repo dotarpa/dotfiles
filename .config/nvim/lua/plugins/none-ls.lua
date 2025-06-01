@@ -34,29 +34,3 @@ return {
 		})
 	end
 }
-
---return {
---    'nvimtools/none-ls.nvim',
---    config = function()
---        local nls = require('none-ls')
---        nls.setup({
---            sources = {
---                nls.builtins.formatting.prettier,
---                nls.builtins.diagnostics.eslint,
---                nls.builtins.code_actions.eslint,
---                nls.builtins.formatting.stylua,
---                nls.builtins.formatting.rustfmt,
---            },
---            on_attach = function(client, bufnr)
---                if client.supports_method('textDocument/formatting') then
---                    vim.api.nvim_create_autocmd('BufWritePre', {
---                        buffer = bufnr,
---                        callback = function()
---                            vim.lsp.buf.format({ async = true })
---                        end,
---                    })
---                end
---            end,
---        })
---    end,
---}

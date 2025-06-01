@@ -68,22 +68,5 @@ return {
         -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
         lazy = false,
     },
-    {
-	    "nvim-neo-tree/neo-tree.nvim",
-	    branch = "v3.x",
-	    dependencies = {
-		    "nvim-lua/plenary.nvim",
-		    "nvim-tree/nvim-web-devicons",
-		    "MunifTanjim/nui.nvim",
-	    },
-	    lazy = false, -- neo-tree will lazily load itself
-	    ---@module "neo-tree"
-	    ---@type neotree.Config?
-	    opts = {
-		    -- fill any relevant options here
-	    },
-	    -- vim.keymap.set('n', '<leader>n', ':Neotree filesystem reveal left<CR>')
-	    vim.keymap.set('n', '<C-n>', ':Neotree filesystem reveal left<CR>')
-    },
 }
 
