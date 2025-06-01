@@ -44,5 +44,6 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.g.have_nerd_font = true
+vim.opt.splitright = true
 
-require("copilotchat")
+-- require("copilotchat")
