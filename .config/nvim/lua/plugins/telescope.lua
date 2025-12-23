@@ -4,6 +4,8 @@ return {
 		branch = "0.1.x",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
+			"nvim-tree/nvim-web-devicons",
+
 			"nvim-telescope/telescope-file-browser.nvim",
 			"nvim-telescope/telescope-ui-select.nvim",
 			{
@@ -22,8 +24,26 @@ return {
 
 			telescope.setup({
 				defaults = {
+					border = true,
+					borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+					prompt_prefix = "  ",
+					selection_caret = "> ",
+					entry_prefix = "  ",
+
+					sorting_strategy = "descending",
+					layout_strategy = "horizontal",
+					layout_config = {
+						width = 0.90,
+						height = 0.85,
+						preview_width = 0.55,
+						prompt_position = "bottom",
+					},
+
+					path_display = { "smart" },
+
+					-- ft_to_lang 問題回避
 					preview = { treesitter = false },
-					layout_strategy = "vertical",
+
 					mappings = {
 						i = {
 							["<esc>"] = actions.close,
@@ -36,6 +56,7 @@ return {
 						},
 					},
 				},
+
 				extensions = {
 					["ui-select"] = require("telescope.themes").get_dropdown({}),
 					file_browser = { hijack_netrw = true },
@@ -46,6 +67,7 @@ return {
 			pcall(telescope.load_extension, "file_browser")
 			pcall(telescope.load_extension, "ui-select")
 
+			-- キーマップ
 			vim.keymap.set("n", "<leader>ff", function()
 				builtin.find_files({ hidden = true })
 			end, { desc = "Telescope: find files" })

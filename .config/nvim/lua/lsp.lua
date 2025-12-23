@@ -13,46 +13,28 @@ end
 -- snippets が不要なら off（必要ならこの行は削除）
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
+vim.lsp.config("*", {})
+	-- 共通設定
+	capabilities = capabilities,
+})
+
+vim.lsp.enable({"pyright","gopls","rust_analyzer"})
+
 -- LSP servers
-lspconfig.pyright.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.gopls.setup({
-	capabilities = capabilities,
-})
-
-lspconfig.rust_analyzer.setup({
-	capabilities = capabilities,
-	settings = {
-		["rust-analyzer"] = {},
-	},
-})
-
--- TypeScript (ts_ls または tsserver)
-local ts = lspconfig.ts_ls or lspconfig.tsserver
-
-local function is_node_project(bufnr)
-	local fname = vim.api.nvim_buf_get_name(bufnr)
-	if fname == "" then
-		return false
-	end
-	local root = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json")(fname)
-	return root ~= nil
-end
-
-if ts then
-	ts.setup({
-		capabilities = capabilities,
-		root_dir = util.root_pattern("package.json", "tsconfig.json", "jsconfig.json"),
-		single_file_support = false,
-		on_attach = function(client, bufnr)
-			if not is_node_project(bufnr) then
-				client.stop()
-			end
-		end,
-	})
-end
+--lspconfig.pyright.setup({
+--	capabilities = capabilities,
+--})
+--
+--lspconfig.gopls.setup({
+--	capabilities = capabilities,
+--})
+--
+--lspconfig.rust_analyzer.setup({
+--	capabilities = capabilities,
+--	settings = {
+--		["rust-analyzer"] = {},
+--	},
+--})
 
 -- LspAttach: buffer local keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -98,3 +80,4 @@ local function copy_diagnostics_to_clipboard()
 end
 
 vim.keymap.set("n", "<leader>y", copy_diagnostics_to_clipboard, { noremap = true, silent = true })
+

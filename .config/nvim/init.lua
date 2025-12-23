@@ -1,7 +1,8 @@
 vim.scriptencoding = "utf-8"
 
 vim.o.encoding = "utf-8"
-vim.o.ambiwidth = "double"
+-- vim.o.ambiwidth = "double"
+vim.o.ambiwidth = "single"
 vim.o.termguicolors = true
 vim.opt.clipboard:append({ "unnamedplus" })
 
