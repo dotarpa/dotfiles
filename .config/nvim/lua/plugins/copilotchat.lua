@@ -1,64 +1,90 @@
 return {
-  "CopilotC-Nvim/CopilotChat.nvim",
-  config = function()
-    require("CopilotChat").setup({
-      window = {
-        layout = "vertical",
-        relative = "editor",
-      },
-      prompts = {
-        Explain = {
-          prompt = "/COPILOT_EXPLAIN 選択されたコードの説明を段落をつけて書いてください。",
-        },
-        Review = {
-          prompt = "/COPILOT_REVIEW 選択されたコードをレビューしてください。",
-          callback = function(response, source) end,
-        },
-        Fix = {
-          prompt = "/COPILOT_FIX このコードには問題があります。バグを修正したコードに書き直してください。",
-        },
-        Optimize = {
-          prompt = "/COPILOT_REFACTOR 選択されたコードを最適化してパフォーマンスと可読性を向上させてください。",
-        },
-        Docs = {
-          prompt = "/COPILOT_DOCS 選択されたコードに対してドキュメンテーションコメントを追加してください。",
-        },
-        Tests = {
-          prompt = "/COPILOT_TESTS 選択されたコードの詳細な単体テスト関数を書いてください。",
-        },
-        FixDiagnostic = {
-          prompt = "ファイル内の次のような診断上の問題を解決してください:",
-          selection = require("CopilotChat.select").diagnostics,
-        },
-      },
-    })
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		build = "make tiktoken",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", branch = "master" },
+			"nvim-telescope/telescope.nvim",
+		},
+		cmd = { "CopilotChat" },
 
-    function CopilotChatBuffer()
-      local input = vim.fn.input("Quick Chat: ")
-      if input ~= "" then
-        require("CopilotChat").ask(input, { selection = require("CopilotChat.select").buffer })
-      end
-    end
+		keys = {
+			{ "<leader>1", "<cmd>CopilotChat<cr>", desc = "CopilotChat: open" },
 
-    vim.api.nvim_set_keymap("n", "<leader>9", "<cmd>lua CopilotChatBuffer()<cr>", { noremap = true, silent = true })
+			{
+				"<leader>9",
+				function()
+					local input = vim.fn.input("Quick Chat: ")
+					if input ~= "" then
+						require("CopilotChat").ask(input, { selection = "buffer" })
+					end
+				end,
+				desc = "CopilotChat: quick chat (buffer)",
+			},
 
-    function ShowCopilotChatActionPrompt()
-      local actions = require("CopilotChat.actions")
-      require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
-    end
+			--      {
+			--        "<leader>0",
+			--        function()
+			--          local actions = require("CopilotChat.actions")
+			--          require("CopilotChat.integrations.telescope").pick(actions.prompt_actions())
+			--        end,
+			--        desc = "CopilotChat: prompt actions",
+			--      },
+			{ "<leader>0", "<cmd>CopilotChatPrompt<cr>", desc = "CopilotChat: prompts" },
 
-    vim.api.nvim_set_keymap(
-      "n",
-      "<leader>0",
-      "<cmd>lua ShowCopilotChatActionPrompt()<cr>",
-      { noremap = true, silent = true }
-    )
+			-- おまけ: 診断を投げたい場合は自前でテキスト化して送る（selectモジュール依存なし）
+			{
+				"<leader>8",
+				function()
+					local diags = vim.diagnostic.get(0)
+					if #diags == 0 then
+						require("CopilotChat").ask(
+							"このファイルの診断はありません。",
+							{ selection = "buffer" }
+						)
+						return
+					end
+					table.sort(diags, function(a, b)
+						return a.lnum < b.lnum
+					end)
+					local lines = {}
+					for _, d in ipairs(diags) do
+						table.insert(lines, string.format("%d:%d %s", d.lnum + 1, d.col + 1, d.message))
+					end
+					local body = table.concat(lines, "\n")
+					require("CopilotChat").ask(
+						"次の診断を解消する修正案を提案して、必要ならパッチも示してください:\n\n"
+							.. body,
+						{ selection = "buffer" }
+					)
+				end,
+				desc = "CopilotChat: fix diagnostics (no select module)",
+			},
+			{ "<leader>6", "<cmd>CopilotChatModels<cr>", desc = "CopilotChat: models" },
+		},
 
-    vim.api.nvim_set_keymap("n", "<leader>1", "<cmd>CopilotChat<cr>", { noremap = true, silent = true })
-  end,
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
-  },
-  event = "VeryLazy",
+		opts = {
+			window = { layout = "vertical", relative = "editor" },
+			prompts = {
+				Explain = {
+					prompt = "選択されたコードの説明を段落をつけて書いてください。",
+				},
+				Review = {
+					prompt = "選択されたコードをレビューしてください。",
+				},
+				Fix = {
+					prompt = "このコードには問題があります。バグを修正したコードに書き直してください。",
+				},
+				Optimize = {
+					prompt = "選択されたコードを最適化してパフォーマンスと可読性を向上させてください。",
+				},
+				Docs = {
+					prompt = "選択されたコードに対してドキュメンテーションコメントを追加してください。",
+				},
+				Tests = {
+					prompt = "選択されたコードの詳細な単体テスト関数を書いてください。",
+				},
+			},
+		},
+	},
 }
