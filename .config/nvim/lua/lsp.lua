@@ -13,28 +13,11 @@ end
 -- snippets が不要なら off（必要ならこの行は削除）
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-vim.lsp.config("*", {})
-	-- 共通設定
+vim.lsp.config("*", {
 	capabilities = capabilities,
 })
 
-vim.lsp.enable({"pyright","gopls","rust_analyzer"})
-
--- LSP servers
---lspconfig.pyright.setup({
---	capabilities = capabilities,
---})
---
---lspconfig.gopls.setup({
---	capabilities = capabilities,
---})
---
---lspconfig.rust_analyzer.setup({
---	capabilities = capabilities,
---	settings = {
---		["rust-analyzer"] = {},
---	},
---})
+vim.lsp.enable({ "ty", "gopls", "rust_analyzer", "perlnavigator" })
 
 -- LspAttach: buffer local keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
@@ -52,7 +35,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, opts)
 
-		-- ここが重要: vim.diagnostic（diagnostics ではない）
 		vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
 		vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
 		vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, opts)
@@ -80,4 +62,3 @@ local function copy_diagnostics_to_clipboard()
 end
 
 vim.keymap.set("n", "<leader>y", copy_diagnostics_to_clipboard, { noremap = true, silent = true })
-
