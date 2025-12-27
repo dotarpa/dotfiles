@@ -25,6 +25,15 @@ return {
 			end
 
 			cmp.setup({
+				enabled = function()
+					if vim.api.nvim_get_option_value("buftype", { buf = 0 }) == "prompt" then
+						return false
+					end
+					if vim.bo.filetype == "copilot-chat" then
+						return false
+					end
+					return true
+				end,
 				window = {
 					completion = cmp.config.window.bordered({ border = "single" }),
 					documentation = cmp.config.window.bordered({ border = "single" }),

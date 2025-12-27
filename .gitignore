@@ -1,2 +1,11 @@
 .vim/bundles/
 .config/gcloud/
+.config/go/
+.config/nvm/
+.config/uv/
+.config/nextjs-nodejs/
+.config/create-next-app-nodejs/
+.config/chromium/
+.config/mcphub/
+.config/github-copilot/
+.config/fish/

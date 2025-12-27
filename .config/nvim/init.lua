@@ -32,6 +32,9 @@ vim.api.nvim_set_keymap("n", "<C-j>", ":bprev<CR>", { noremap = true, silent = t
 vim.api.nvim_set_keymap("n", "<C-k>", ":bnext<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<Leader>w", ":w<CR>", { noremap = true, silent = true })
 
+vim.opt.completeopt = { "menuone", "noselect", "popup" }
+-- vim.opt.completeopt:append({ "menuone", "noselect", "popup" })
+
 require("lazy_nvim")
 
 vim.api.nvim_create_autocmd("FileType", {
