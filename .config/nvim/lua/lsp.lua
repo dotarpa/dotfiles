@@ -17,7 +17,7 @@ vim.lsp.config("*", {
 	capabilities = capabilities,
 })
 
-vim.lsp.enable({ "ty", "gopls", "rust_analyzer", "perlnavigator" })
+vim.lsp.enable({ "ty", "ruff", "gopls", "rust_analyzer", "perlnavigator" })
 
 -- LspAttach: buffer local keymaps
 vim.api.nvim_create_autocmd("LspAttach", {
