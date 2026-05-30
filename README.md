@@ -4,15 +4,14 @@
 
 ```
 $ cd ~; pwd
-$ git clone git@github.com:Bentham3314/dotfiles.git
-$ ln -s ~/dotfiles/.vim/ ~/
+$ git clone git@github.com:dotarpa/dotfiles.git
 $ ln -s ~/dotfiles/.config ~/
 ```
 
 ### change log
 
 - vim -> nvim
-- dein
+- dein -> Lazy
 
 
 #### Note. install nvim
@@ -27,25 +26,6 @@ $ ln -s ~/dotfiles/.config ~/
 # git checkout [stable release or most-recent tag]
 # make
 # make install
-```
-
-#### Note. install Python3
-
-- Env: CnetOS6
-
-```
-# yum install -y https://centos6.iuscommunity.org/ius-release.rpm
-# yum install -y python36*
-# pip3.6 install --upgrade pip
-# pip3.6 install pynvim
-```
-
-- Env: CentOS7
-
-```
-# yum install -y python3
-# pip3.6 install --upgrade pip
-# pip3.6 install pynvim
 ```
 
 #### Note. lsp server
