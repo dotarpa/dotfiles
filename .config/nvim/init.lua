@@ -25,7 +25,7 @@ vim.cmd([[syntax enable]])
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.python3_host_prog = "$HOME/.venv/bin/python3"
+vim.g.python3_host_prog = "$HOME/.venv-nvim/bin/python3"
 
 vim.api.nvim_set_keymap("n", "<Esc><Esc>", ":noh<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<C-j>", ":bprev<CR>", { noremap = true, silent = true })
